@@ -20,7 +20,6 @@ static void	send_char(char c, pid_t pid)
 		else
 			kill(pid, SIGUSR2);
 		i--;
-		//crear bucle para confirmacion de envío con **variable global**
 		while(confirmation != 1)
 			sleep(1);
 	}
@@ -41,6 +40,7 @@ static void	signal_handler(int signal)
 	if(signal == SIGUSR1)
 		confirmation = 1;
 	else if(signal == SIGUSR2)
+		//OBSERVAR!!!!
 		exit(0);
 }
 

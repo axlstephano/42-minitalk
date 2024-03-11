@@ -40,7 +40,6 @@ static void	signal_handler(int signal)
 	if(signal == SIGUSR1)
 		confirmation = 1;
 	else if(signal == SIGUSR2)
-		//OBSERVAR!!!!
 		exit(0);
 }
 

@@ -10,27 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 		=	$(shell find . -name "*.c")
-
-OBJS		=	$(SRCS:.c=.o)
-
-NAME 		= 	libft.a
-
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
 
-all:			$(NAME)
+all:			libft
 
-$(NAME):		$(OBJS)
-				@ar rcs $(NAME) $(OBJS)
-
-clean:
-				@$(RM) $(OBJS) $(BONUS_OBJS)
-
-fclean:			clean
-				@$(RM) $(NAME)
-
-re:				fclean $(NAME)
+libft:			
+				@make -C ./libft
 
 .PHONY:			all clean fclean re bonus

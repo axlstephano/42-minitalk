@@ -3,7 +3,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-/* void    sig_handler(int signal, siginfo_t *info)
+void    sig_handler(int signal, siginfo_t *info)
 {
     static char c;
     static int  i;
@@ -16,10 +16,8 @@
         i = 7;
     if(signal == SIGUSR1)
         printf("1\n");
-        //c |= (1 << i);
     else if(signal == SIGUSR2)
         printf("0\n");
-        //c |= (0 << i);
     if(i == 0 && c != '\0')
         write(1, &c, 1);
     else if(i == 0 && c == '\0')
@@ -41,9 +39,9 @@ int main()
     printf("\t\tPID: %d\n", getpid());
     while(1)
         sleep(1);
-} */
+}
 
-void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
+void	init_sig(int sig, void (*handler)(int, siginfo_t *))
 {
 	struct sigaction	susr;
 
@@ -56,39 +54,3 @@ void	init_sig(int sig, void (*handler)(int, siginfo_t *, void *))
 		sigaction(SIGUSR2, &susr, 0);
 }
 
-
-void	sig_usr(int sig, siginfo_t *info, void *context)
-{
-	static char	c = 0;
-	static int	bit = -1;
-
-	(void)context;
-	if (kill(info->si_pid, 0) < 0)
-	{
-		printf("ERROR : cant send sig to pid : %d\n", info->si_pid);
-		exit(EXIT_FAILURE);
-	}
-	if (bit < 0 && !c)
-		printf("\nClient say : ");
-	if (bit < 0)
-		bit = __CHAR_BIT__ * sizeof(c) - 1;
-	if (sig == SIGUSR1)
-		c |= 1 << bit;
-	else if (sig == SIGUSR2)
-		c &= ~(1 << bit);
-	if (!bit && c)
-		write(1, &c, 1);
-	else if (!bit && !c)
-		kill(info->si_pid, SIGUSR2);
-	bit--;
-	kill(info->si_pid, SIGUSR1);
-}
-
-int	main(void)
-{
-	init_sig(SIGUSR1, &sig_usr);
-	init_sig(SIGUSR2, &sig_usr);
-	printf("pid: %d\n", getpid());
-	while (1)
-		sleep(1);
-}

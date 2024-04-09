@@ -3,54 +3,36 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void    sig_handler(int signal, siginfo_t *info)
+void	sig_usr(int sig)
 {
-    static char c;
-    static int  i;
+	static char	c = 0;
+	static int	bit = -1;
 
-    c = 0;
-    i = -1;
-    if(kill(info->si_pid, 0) < 0)
-        exit(1);
-    if(i < 0)
-        i = 7;
-    if(signal == SIGUSR1)
-        printf("1\n");
-    else if(signal == SIGUSR2)
-        printf("0\n");
-    if(i == 0 && c != '\0')
-        write(1, &c, 1);
-    else if(i == 0 && c == '\0')
-        kill(info->si_pid, SIGUSR2);
-    i--;
-    kill(info->si_pid, SIGUSR1);
+	if (bit < 0 && !c)
+		printf("\nClient say : ");
+	if (bit < 0)
+		bit = __CHAR_BIT__ * sizeof(c) - 1;
+	if (sig == SIGUSR1)
+		c |= 1 << bit;
+	else if (sig == SIGUSR2)
+		c &= ~(1 << bit);
+	if (!bit && c)
+		write(1, &c, 1);
+	bit--;
 }
 
-int main()
+int	main(void)
 {
-    signal(SIGUSR1, &sig_handler);
-    signal(SIGUSR2, &sig_handler);
-    printf("███╗░░░███╗██╗███╗░░██╗██╗████████╗░█████╗░██╗░░░░░██╗░░██╗\n");
+	signal(SIGUSR1, sig_usr);
+	signal(SIGUSR2, sig_usr);
+	printf("pid: %d", getpid());
+	while (1)
+		sleep(1);
+}
+
+/*    printf("███╗░░░███╗██╗███╗░░██╗██╗████████╗░█████╗░██╗░░░░░██╗░░██╗\n");
     printf("████╗░████║██║████╗░██║██║╚══██╔══╝██╔══██╗██║░░░░░██║░██╔╝\n");
     printf("██╔████╔██║██║██╔██╗██║██║░░░██║░░░███████║██║░░░░░█████═╝░\n");
     printf("██║╚██╔╝██║██║██║╚████║██║░░░██║░░░██╔══██║██║░░░░░██╔═██╗░\n");
     printf("██║░╚═╝░██║██║██║░╚███║██║░░░██║░░░██║░░██║███████╗██║░╚██╗\n");
-    printf("╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n");
-    printf("\t\tPID: %d\n", getpid());
-    while(1)
-        sleep(1);
-}
-
-void	init_sig(int sig, void (*handler)(int, siginfo_t *))
-{
-	struct sigaction	susr;
-
-	susr.sa_sigaction = handler;
-	susr.sa_flags = SA_SIGINFO | SA_RESTART | SA_NODEFER;
-	sigemptyset(&susr.sa_mask);
-	if (sig == SIGUSR1)
-		sigaction(SIGUSR1, &susr, 0);
-	else if (sig == SIGUSR2)
-		sigaction(SIGUSR2, &susr, 0);
-}
-
+    printf("╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n");*/

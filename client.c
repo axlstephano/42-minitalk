@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
+#include "42_collection/ft_printf.h"
+#include "42_collection/libft.h"
 
 //sigusr1 = 1
 //sigusr2 = 0

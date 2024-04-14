@@ -6,26 +6,28 @@
 void	sig_usr(int sig)
 {
 	static char	c = 0;
-	static int	bit = -1;
+	static int	bit = 7;
 
-	if (bit < 0 && !c)
-		printf("\nClient say : ");
-	if (bit < 0)
-		bit = __CHAR_BIT__ * sizeof(c) - 1;
-	if (sig == SIGUSR1)
-		c |= 1 << bit;
-	else if (sig == SIGUSR2)
+	if(sig == SIGUSR1)
+		c |= (1 << bit);
+	else if(sig == SIGUSR2)
 		c &= ~(1 << bit);
-	if (!bit && c)
-		write(1, &c, 1);
 	bit--;
+	if(c && bit == 0)
+	{
+		write(1, &c, 1);
+		bit = 7;
+	}
 }
 
 int	main(void)
 {
-	signal(SIGUSR1, sig_usr);
-	signal(SIGUSR2, sig_usr);
-	printf("pid: %d", getpid());
+	pid_t	pid;
+
+	pid = getpid();
+	signal(SIGUSR1, &sig_usr);
+	signal(SIGUSR2, &sig_usr);
+	printf("pid: %d", pid);
 	while (1)
 		sleep(1);
 }

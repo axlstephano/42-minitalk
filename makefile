@@ -10,13 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC			=	gcc
-RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror
+SERVER_SRC		=	server.c
+CLIENT_SRC		=	client.c
+42COLLECTION	=	./42_collection/42collection.a
 
-all:			libft
+SERVER_OBJ	=	$(SERVER_SRC:.c=.o)
+CLIENT_OBJ	=	$(CLIENT_SRC=.c=.o)
 
-libft:			
-				@make -C ./libft
+RM	=	rm -rf
+CC	=	gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-.PHONY:			all clean fclean re bonus
+all:	server client
+
+$(42COLLECTION):
+	@make -s -C ./42_collection
+
+server: $(SERVER_OBJ) $(42COLLECTION)
+	@$(CC) $(CFLAGS) $(42COLLECTION) $(SERVER_OBJ) -o server
+
+client: $(CLIENT_OBJ) $(42COLLECTION)
+	@$(CC) $(CFLAGS) $(42COLLECTION) $(CLIENT_SRC) -o client
+
+clean:
+	@make clean -C ./42_collection
+	@$(RM) $(CLIENT_OBJ) $(SERVER_OBJ)
+
+fclean: clean
+	@make fclean -C ./42_collection
+	$(RM) server client
+

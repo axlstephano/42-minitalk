@@ -1,5 +1,5 @@
-#include "42_collection/ft_printf.h"
-#include "42_collection/libft.h"
+#include "./42_collection/ft_printf.h"
+#include "./42_collection/libft.h"
 
 //sigusr1 = 1
 //sigusr2 = 0
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		printf("¡ARGUMENTS ARE MISSING :3");
+		ft_printf("¡ARGUMENTS ARE MISSING :3");
 		return(1);
 	}
 	pid = atoi(argv[1]);

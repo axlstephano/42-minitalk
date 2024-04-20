@@ -1,21 +1,22 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
+#include "./42_collection/ft_printf.h"
+#include "./42_collection/libft.h"
 
-void	sig_usr(int sig)
+void    sig_usr(int sig)
 {
-	static char	c = 0;
-	static int	bit = 7;
+	static char letter;
+	static int  bit;
 
+	letter = 0;
+	bit = 7;
 	if(sig == SIGUSR1)
-		c |= (1 << bit);
+		letter |= (1 << bit);
 	else if(sig == SIGUSR2)
-		c &= ~(1 << bit);
+		letter |= ~(1 << bit);
 	bit--;
-	if(c && bit == 0)
+	if(bit == 1)
 	{
-		write(1, &c, 1);
+		write(1, &letter, 1);
+		letter = 0;
 		bit = 7;
 	}
 }
@@ -27,14 +28,14 @@ int	main(void)
 	pid = getpid();
 	signal(SIGUSR1, &sig_usr);
 	signal(SIGUSR2, &sig_usr);
-	printf("pid: %d", pid);
+	ft_printf("███╗░░░███╗██╗███╗░░██╗██╗████████╗░█████╗░██╗░░░░░██╗░░██╗\n");
+    ft_printf("████╗░████║██║████╗░██║██║╚══██╔══╝██╔══██╗██║░░░░░██║░██╔╝\n");
+    ft_printf("██╔████╔██║██║██╔██╗██║██║░░░██║░░░███████║██║░░░░░█████═╝░\n");
+    ft_printf("██║╚██╔╝██║██║██║╚████║██║░░░██║░░░██╔══██║██║░░░░░██╔═██╗░\n");
+    ft_printf("██║░╚═╝░██║██║██║░╚███║██║░░░██║░░░██║░░██║███████╗██║░╚██╗\n");
+    ft_printf("╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n");
+	ft_printf("\t\t\tpid: %d\n", pid);
 	while (1)
 		sleep(1);
 }
 
-/*    printf("███╗░░░███╗██╗███╗░░██╗██╗████████╗░█████╗░██╗░░░░░██╗░░██╗\n");
-    printf("████╗░████║██║████╗░██║██║╚══██╔══╝██╔══██╗██║░░░░░██║░██╔╝\n");
-    printf("██╔████╔██║██║██╔██╗██║██║░░░██║░░░███████║██║░░░░░█████═╝░\n");
-    printf("██║╚██╔╝██║██║██║╚████║██║░░░██║░░░██╔══██║██║░░░░░██╔═██╗░\n");
-    printf("██║░╚═╝░██║██║██║░╚███║██║░░░██║░░░██║░░██║███████╗██║░╚██╗\n");
-    printf("╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝\n");*/

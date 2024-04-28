@@ -10,7 +10,7 @@ void	send_str(char *str, pid_t pid, int len)
 	if(*str == 0)
 	{
 		ft_printf("empty string!!\n");
-		exit(1);
+		exit (1);
 	}
 	while (i < len)
 	{
@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 		ft_printf("¡ARGUMENTS ARE MISSING :3\n");
 		return(1);
 	}
+	if(argv[1] > 
 	pid = atoi(argv[1]);
 	argv[2] = ft_strjoin(argv[2], "\n");
 	send_str(argv[2], pid, ft_strlen(argv[2]));

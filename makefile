@@ -40,3 +40,4 @@ fclean: clean
 	@make fclean -C ./42_collection
 	@$(RM) server client
 
+re: fclean all

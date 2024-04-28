@@ -38,7 +38,6 @@ int main(int argc, char **argv)
 		ft_printf("¡ARGUMENTS ARE MISSING :3\n");
 		return(1);
 	}
-	if(argv[1] > 
 	pid = atoi(argv[1]);
 	argv[2] = ft_strjoin(argv[2], "\n");
 	send_str(argv[2], pid, ft_strlen(argv[2]));

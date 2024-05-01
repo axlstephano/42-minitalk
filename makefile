@@ -12,7 +12,7 @@
 
 SERVER_SRC		=	server.c
 CLIENT_SRC		=	client.c
-42COLLECTION	=	./42_collection/42collection.a
+NAME	=	./42_collection/42collection.a
 
 SERVER_OBJ	=	$(SERVER_SRC:.c=.o)
 CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
@@ -23,14 +23,14 @@ CFLAGS	= -Wall -Wextra -Werror
 
 all:	client server
 
-$(42COLLECTION):
+$(NAME):
 	@make -s -C ./42_collection
 
-client: $(CLIENT_OBJ) $(42COLLECTION)
-	@$(CC) $(CFLAGS) -fsanitize=address $(42COLLECTION) $(CLIENT_SRC) -o client
+client: $(CLIENT_OBJ) $(NAME)
+	@$(CC) $(CFLAGS) -fsanitize=address $(NAME) $(CLIENT_SRC) -o client
 
-server: $(SERVER_OBJ) $(42COLLECTION)
-	@$(CC) $(CFLAGS) $(42COLLECTION) $(SERVER_OBJ) -o server
+server: $(SERVER_OBJ) $(NAME)
+	@$(CC) $(CFLAGS) $(NAME) $(SERVER_OBJ) -o server
 
 clean:
 	@make clean -C ./42_collection
@@ -41,3 +41,5 @@ fclean: clean
 	@$(RM) server client
 
 re: fclean all
+
+.PHONY: all clean fclean re

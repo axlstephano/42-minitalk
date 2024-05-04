@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:31:55 by axcastil          #+#    #+#             */
-/*   Updated: 2023/10/17 04:33:06 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:22:47 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 			*d++ = *s++;
 	else
 		while (len--)
-				d[len] = s[len];
+			d[len] = s[len];
 	return (dst);
 }
 

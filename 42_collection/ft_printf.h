@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:08:05 by axcastil          #+#    #+#             */
-/*   Updated: 2023/11/26 19:50:45 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:18:31 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdarg.h>
+# include <stdint.h>
 
 int		ft_printf(char const *sentence, ...);
 void	inspect(va_list args, char *letter, size_t *number);

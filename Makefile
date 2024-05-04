@@ -6,13 +6,13 @@
 #    By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/27 13:53:55 by axcastil          #+#    #+#              #
-#    Updated: 2024/05/04 16:46:45 by axcastil         ###   ########.fr        #
+#    Updated: 2024/05/04 18:29:18 by axcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SERVER_SRC		=	server.c
 CLIENT_SRC		=	client.c
-NAME	=	./42_collection/42collection.a
+42_COLLECTION	=	./42_collection/42collection.a
 
 SERVER_OBJ	=	$(SERVER_SRC:.c=.o)
 CLIENT_OBJ	=	$(CLIENT_SRC:.c=.o)
@@ -23,14 +23,14 @@ CFLAGS	= -Wall -Wextra -Werror
 
 all:	client server
 
-$(NAME):
+$(42_COLLECTION):
 	@make -s -C ./42_collection
 
-client: $(CLIENT_OBJ) $(NAME)
-	@$(CC) $(CFLAGS) -fsanitize=address $(NAME) $(CLIENT_SRC) -o client
+client: $(CLIENT_OBJ) $(42_COLLECTION)
+	@$(CC) $(CFLAGS) $(CLIENT_OBJ) -o client $(42_COLLECTION)
 
-server: $(SERVER_OBJ) $(NAME)
-	@$(CC) $(CFLAGS) $(NAME) $(SERVER_OBJ) -o server
+server: $(SERVER_OBJ) $(42_COLLECTION)
+	@$(CC) $(CFLAGS) $(SERVER_OBJ) -o server $(42_COLLECTION)
 
 clean:
 	@make clean -C ./42_collection

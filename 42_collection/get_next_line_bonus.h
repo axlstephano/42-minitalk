@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:25:36 by axcastil          #+#    #+#             */
-/*   Updated: 2023/12/27 19:37:29 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:18:26 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdint.h>
+
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);

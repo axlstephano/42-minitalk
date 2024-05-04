@@ -6,7 +6,7 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:25:36 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/04 18:18:26 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:31:11 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 #  define BUFFER_SIZE 4
 # endif
 
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdint.h>
-
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);

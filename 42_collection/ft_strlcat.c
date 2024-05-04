@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 15:37:25 by axcastil          #+#    #+#             */
-/*   Updated: 2023/10/20 21:11:39 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/04 18:32:43 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 {
 	size_t	i;
 	size_t	j;
+	size_t	i;
+	size_t	j;
+	size_t	dlen;
 
 	j = ft_strlen(dst);
 	i = j;
 	if (dst < src || j < dstsize)
 		return (0);
 	while (src[j - i] && j + 1 < dstsize)
-	{	
+	{
 		dst[j] = src[j - i];
 		j++;
 	}

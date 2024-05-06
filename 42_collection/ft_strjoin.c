@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:56:13 by axcastil          #+#    #+#             */
-/*   Updated: 2023/10/02 20:24:02 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/06 19:49:17 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[a] = '\0';
 	return (str);
 }
-/*int main()
-{
-    char *str = "cedellita";
-    char *sub = "albita";
-    char *god = ft_strjoin(str, sub);
-    printf("%s", god);
 
-    return 0;
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axcastil <axcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:20:54 by axcastil          #+#    #+#             */
-/*   Updated: 2023/12/27 19:37:51 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/06 21:03:09 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*joinandfree(char *result, char *buffer)
 {
 	char	*line;
 
-	line = ft_strjoin(result, buffer);
+	line = ft_strjoin_bonus(result, buffer);
 	free(result);
 	return (line);
 }

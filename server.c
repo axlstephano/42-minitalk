@@ -6,7 +6,7 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:21:54 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/13 19:50:52 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:04:39 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 #include <signal.h>
 #include <stdlib.h>
 
+int	g_bit_init;
+
 void	sig_handler(int signal, siginfo_t *pid, void *opcional)
 {
 	static char	letter;
-	static int	bit = -1;
+	static int	bit;
 	
 	(void)opcional;
+	if (!g_bit_init)
+	{
+		bit = -1;
+		g_bit_init = 1;
+	}
 	if (bit < 0)
 		bit = __CHAR_BIT__ * sizeof(char) - 1;
 	if (kill(pid->si_pid, 0) < 0)

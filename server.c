@@ -6,7 +6,7 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:21:54 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/13 19:47:19 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:50:52 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	sig_handler(int signal, siginfo_t *pid, void *opcional)
 {
 	static char	letter;
 	static int	bit = -1;
-	static int	sigusr;
 	
 	(void)opcional;
 	if (bit < 0)
@@ -27,10 +26,9 @@ void	sig_handler(int signal, siginfo_t *pid, void *opcional)
 	if (kill(pid->si_pid, 0) < 0)
 		exit(1);
 	if (signal == SIGUSR1)
-		sigusr = 1;
+		letter = (letter | (1 << bit));
 	else if (signal == SIGUSR2)
-		sigusr = 0;
-	letter = (letter << 1) + sigusr;
+		letter = (letter & ~(1 << bit));
 	if (!bit && letter)
 		ft_putchar_fd(letter, 1);
 	else if (!bit && !letter)

@@ -6,7 +6,7 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:21:54 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/13 20:04:39 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:46:12 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include <signal.h>
 #include <stdlib.h>
 
-int	g_bit_init;
+int		g_bit_init;
 
 void	sig_handler(int signal, siginfo_t *pid, void *opcional)
 {
 	static char	letter;
 	static int	bit;
-	
+
 	(void)opcional;
 	if (!g_bit_init)
 	{
@@ -44,16 +44,17 @@ void	sig_handler(int signal, siginfo_t *pid, void *opcional)
 	kill(pid->si_pid, SIGUSR1);
 }
 
-void	sigaction_set(int signal, void (*signal_handler)(int, siginfo_t *, void *))
+void	sigaction_set(int signal, void (*signal_handler)(int, siginfo_t *,
+			void *))
 {
-	struct sigaction susr;
+	struct sigaction	susr;
 
 	susr.sa_sigaction = signal_handler;
-	susr.sa_flags = SA_SIGINFO | SA_RESTART | SA_NODEFER;	
+	susr.sa_flags = SA_SIGINFO | SA_RESTART | SA_NODEFER;
 	sigemptyset(&susr.sa_mask);
 	if (signal == SIGUSR1)
 		sigaction(SIGUSR1, &susr, 0);
-	else if(signal == SIGUSR2)
+	else if (signal == SIGUSR2)
 		sigaction(SIGUSR2, &susr, 0);
 }
 

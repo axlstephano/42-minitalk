@@ -6,7 +6,7 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 19:56:13 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/06 19:49:17 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:46:41 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[a] = '\0';
 	return (str);
 }
-

@@ -6,14 +6,14 @@
 /*   By: axcastil <axcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 17:22:02 by axcastil          #+#    #+#             */
-/*   Updated: 2024/05/13 15:20:18 by axcastil         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:46:24 by axcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "42_collection/ft_printf.h"
 #include "42_collection/libft.h"
 
-int	g_confirmation;
+int		g_confirmation;
 
 void	send_char(char letter, pid_t pid)
 {
@@ -33,7 +33,6 @@ void	send_char(char letter, pid_t pid)
 	}
 }
 
-
 void	send_str(char *str, pid_t pid)
 {
 	int	cur;
@@ -47,7 +46,6 @@ void	send_str(char *str, pid_t pid)
 	send_char('\n', pid);
 	send_char(0, pid);
 }
-	
 
 void	sig_usr_handler(int signal)
 {
@@ -70,6 +68,6 @@ int	main(int argc, char **argv)
 	signal(SIGUSR2, &sig_usr_handler);
 	pid = ft_atoi(argv[1]);
 	send_str(argv[2], pid);
-	while(1)
+	while (1)
 		sleep(1);
 }
